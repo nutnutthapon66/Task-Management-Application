@@ -78,6 +78,7 @@ const { isDark, toggle: toggleTheme } = useTheme()
 }
 
 .app-bar__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -89,6 +90,7 @@ const { isDark, toggle: toggleTheme } = useTheme()
   border-radius: 10px;
   color: var(--app-muted);
   transition: color 0.2s, background 0.2s;
+  margin: 10px;
 }
 .app-bar__theme-toggle:hover {
   color: var(--app-text);

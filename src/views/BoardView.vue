@@ -2,10 +2,10 @@
   <div class="board-view">
     <section class="board-view__hero">
       <div>
-        <p class="board-view__eyebrow">Task Management</p>
-        <h1 class="board-view__title">จัดการงานให้ชัดเจน ทุกขั้นตอน</h1>
+        <p class="board-view__eyebrow">Simple project flow</p>
+        <h1 class="board-view__title">Keep work clear, quiet, and moving.</h1>
         <p class="board-view__subtitle">
-          สร้าง จัดลำดับ และติดตามงานผ่าน Kanban Board — Todo, In Progress, Done
+          Track tasks by stage, filter what matters, and keep the board readable at a glance.
         </p>
       </div>
 
@@ -224,7 +224,9 @@ function handleDeleteCancel() {
 .board-view__title {
   max-width: 640px;
   margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.7rem, 2.8vw, 2.75rem);
+  font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.04em;
   color: var(--app-text);
