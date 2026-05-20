@@ -1,10 +1,13 @@
 <template>
-  <div class="kanban-column d-flex flex-column">
+  <div
+    class="kanban-column d-flex flex-column"
+    :style="{ '--col-color': borderColor, '--col-bg': bgColor }"
+  >
     <div class="kanban-column__header">
       <div class="kanban-column__heading">
         <span class="kanban-column__dot" :style="{ background: dotColor }" />
         <div>
-          <p class="kanban-column__label">{{ STATUS_LABELS[status] }}</p>
+          <p class="kanban-column__label" :style="{ color: labelColor }">{{ STATUS_LABELS[status] }}</p>
           <span class="kanban-column__hint">{{ columnHint }}</span>
         </div>
       </div>
@@ -53,12 +56,15 @@ const emit = defineEmits<{
   tasksReordered: [updates: { id: number; order: number }[]]
 }>()
 
-const dotColorMap: Record<TaskStatus, string> = {
-  [TaskStatus.TODO]:        '#94a3b8',
-  [TaskStatus.IN_PROGRESS]: '#6366f1',
-  [TaskStatus.DONE]:        '#10b981',
+const statusTheme: Record<TaskStatus, { dot: string; label: string; border: string; bg: string }> = {
+  [TaskStatus.TODO]:        { dot: '#f59e0b', label: '#d97706', border: '#f59e0b', bg: 'rgba(245,158,11,0.08)'  },
+  [TaskStatus.IN_PROGRESS]: { dot: '#6366f1', label: '#6366f1', border: '#6366f1', bg: 'rgba(99,102,241,0.08)'  },
+  [TaskStatus.DONE]:        { dot: '#10b981', label: '#10b981', border: '#10b981', bg: 'rgba(16,185,129,0.08)'  },
 }
-const dotColor = computed(() => dotColorMap[props.status])
+const dotColor   = computed(() => statusTheme[props.status].dot)
+const labelColor = computed(() => statusTheme[props.status].label)
+const borderColor = computed(() => statusTheme[props.status].border)
+const bgColor    = computed(() => statusTheme[props.status].bg)
 
 const columnHint = computed(() => {
   if (props.status === TaskStatus.TODO) return 'Planned next'
@@ -75,6 +81,7 @@ const columnHint = computed(() => {
   flex: 1;
   padding: 16px 14px;
   border: 1px solid var(--app-border-strong);
+  border-top: 3px solid var(--col-color, var(--app-border-strong));
   border-radius: 24px;
   background: var(--app-surface);
   backdrop-filter: blur(20px) saturate(140%);
@@ -131,11 +138,11 @@ const columnHint = computed(() => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: var(--app-surface-strong);
-  border: 1px solid var(--app-border-strong);
+  background: color-mix(in srgb, var(--col-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--col-color) 30%, transparent);
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--app-muted);
+  color: var(--col-color);
 }
 
 .kanban-column__add {
