@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at 0% 0%, var(--app-glow-a), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 10%, var(--app-glow-b), transparent),
+    var(--app-bg);
+  background-attachment: fixed;
+  color: var(--app-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+html {
+  background: var(--app-bg);
+}
+
+.v-application {
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif !important;
+  color: var(--app-text);
+  background: transparent;
+}
+
+.v-application__wrap {
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* ── Light ────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+
+  --app-bg:             #f0f2f5;
+  --app-glow-a:         rgba(139, 92, 246, 0.08);
+  --app-glow-b:         rgba(59, 130, 246, 0.07);
+
+  --app-text:           #0f172a;
+  --app-muted:          #64748b;
+  --app-muted-light:    #94a3b8;
+
+  --app-border:         rgba(15, 23, 42, 0.07);
+  --app-border-strong:  rgba(15, 23, 42, 0.13);
+
+  --app-surface:        rgba(255, 255, 255, 0.75);
+  --app-surface-strong: rgba(255, 255, 255, 0.95);
+  --app-surface-hover:  rgba(255, 255, 255, 1);
+
+  --app-modal-bg:       #ffffff;
+  --app-modal-field:    #f8fafc;
+
+  --app-shadow-sm:      0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --app-shadow:         0 4px 24px rgba(15, 23, 42, 0.07), 0 1px 4px rgba(15, 23, 42, 0.04);
+  --app-shadow-lg:      0 12px 48px rgba(15, 23, 42, 0.10), 0 4px 12px rgba(15, 23, 42, 0.06);
+
+  --app-accent:         #6366f1;
+  --app-accent-subtle:  rgba(99, 102, 241, 0.08);
+}
+
+/* ── Dark ─────────────────────────────────────────────────── */
+.v-theme--dark {
+  color-scheme: dark;
+
+  --app-bg:             #0b0f1a;
+  --app-glow-a:         rgba(139, 92, 246, 0.12);
+  --app-glow-b:         rgba(56, 189, 248, 0.07);
+
+  --app-text:           #e2e8f0;
+  --app-muted:          #7c8fa8;
+  --app-muted-light:    #4e6074;
+
+  --app-border:         rgba(226, 232, 240, 0.07);
+  --app-border-strong:  rgba(226, 232, 240, 0.13);
+
+  --app-surface:        rgba(17, 24, 39, 0.80);
+  --app-surface-strong: rgba(22, 30, 50, 0.90);
+  --app-surface-hover:  rgba(30, 40, 64, 0.96);
+
+  --app-modal-bg:       #131c2e;
+  --app-modal-field:    #0e1623;
+
+  --app-shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.30), 0 1px 2px rgba(0, 0, 0, 0.20);
+  --app-shadow:         0 4px 24px rgba(0, 0, 0, 0.35), 0 1px 6px rgba(0, 0, 0, 0.20);
+  --app-shadow-lg:      0 16px 56px rgba(0, 0, 0, 0.50), 0 6px 16px rgba(0, 0, 0, 0.30);
+
+  --app-accent:         #818cf8;
+  --app-accent-subtle:  rgba(129, 140, 248, 0.10);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(120, 120, 140, 0.25); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(120, 120, 140, 0.45); }
+
+/* ── Vuetify overrides ────────────────────────────────────── */
+.v-dialog .v-overlay__content {
+  border-radius: 24px !important;
+}
+
+.v-card {
+  border-radius: 18px !important;
+}
+
+.v-chip {
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
+.v-field {
+  border-radius: 12px !important;
+}
+
+.v-btn {
+  letter-spacing: 0 !important;
+  font-weight: 600 !important;
+}
