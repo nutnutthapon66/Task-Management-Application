@@ -18,6 +18,7 @@ export const useNotificationStore = defineStore('notifications', () => {
   function push(message: string, type: NotificationType = 'info', timeout = 3500) {
     const id = uid++
     notifications.value.push({ id, message, type, timeout })
+    setTimeout(() => remove(id), timeout)
   }
 
   function remove(id: number) {

@@ -1,9 +1,17 @@
 import { useTheme as useVuetifyTheme } from 'vuetify'
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 
 export function useTheme() {
   const theme = useVuetifyTheme()
   const isDark = computed(() => theme.global.current.value.dark)
+
+  // Sync class on both <html> and <body> so CSS variables apply regardless of where Vuetify sets it
+  watchEffect(() => {
+    document.documentElement.classList.toggle('v-theme--dark', isDark.value)
+    document.documentElement.classList.toggle('v-theme--light', !isDark.value)
+    document.body.classList.toggle('v-theme--dark', isDark.value)
+    document.body.classList.toggle('v-theme--light', !isDark.value)
+  })
 
   function toggle() {
     theme.global.name.value = isDark.value ? 'light' : 'dark'

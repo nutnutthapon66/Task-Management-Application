@@ -16,7 +16,11 @@
       var saved = localStorage.getItem('theme')
       var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       var dark = saved ? saved === 'dark' : prefersDark
-      if (dark) document.documentElement.classList.add('v-theme--dark')
+      var cls = dark ? 'v-theme--dark' : 'v-theme--light'
+      document.documentElement.classList.add(cls)
+      document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add(cls)
+      })
     })()
   </script>
   </head>

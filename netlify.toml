@@ -4,3 +4,16 @@
 
 [build.environment]
   NODE_VERSION = "22.12.0"
+
+# Allow Service Worker to intercept all requests (required for MSW)
+[[headers]]
+  for = "/mockServiceWorker.js"
+  [headers.values]
+    Service-Worker-Allowed = "/"
+    Cache-Control = "no-cache"
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

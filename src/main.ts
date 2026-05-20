@@ -8,10 +8,8 @@ import { router } from './router'
 
 function shouldUseMockApi() {
   const explicit = import.meta.env.VITE_USE_MSW?.trim().toLowerCase()
-
   if (explicit === 'true') return true
   if (explicit === 'false') return false
-
   return !import.meta.env.VITE_API_BASE_URL
 }
 
@@ -21,7 +19,7 @@ async function bootstrap() {
     await worker.start({
       onUnhandledRequest: 'bypass',
       serviceWorker: { url: '/mockServiceWorker.js' },
-    })
+    }).catch((e) => console.warn('[MSW] Service Worker failed to start:', e))
   }
 
   const app = createApp(App)

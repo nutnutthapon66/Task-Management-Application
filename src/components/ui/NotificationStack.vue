@@ -12,11 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import NotificationToast from '@/components/ui/NotificationToast.vue'
 import { useNotificationStore } from '@/stores/useNotificationStore'
 
 const store = useNotificationStore()
-const { notifications } = store
+const { notifications } = storeToRefs(store)
 
 function handleNotificationDismiss(id: number) {
   store.remove(id)

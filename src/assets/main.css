@@ -16,6 +16,14 @@ body,
   padding: 0;
 }
 
+html {
+  background: var(--app-bg);
+  color: var(--app-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
 body {
   background:
     radial-gradient(ellipse 80% 50% at 0% 0%, var(--app-glow-a), transparent),
@@ -26,10 +34,6 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-}
-
-html {
-  background: var(--app-bg);
 }
 
 .v-application {
@@ -44,7 +48,7 @@ html {
 }
 
 /* ── Light ────────────────────────────────────────────────── */
-:root {
+html, :root {
   color-scheme: light;
 
   --app-bg:             #f0f2f5;
@@ -74,6 +78,8 @@ html {
 }
 
 /* ── Dark ─────────────────────────────────────────────────── */
+html.v-theme--dark,
+body.v-theme--dark,
 .v-theme--dark {
   color-scheme: dark;
 
