@@ -1,16 +1,16 @@
 <template>
-  <v-dialog v-model="model" max-width="420" persistent>
+  <v-dialog v-model="model" max-width="400" persistent>
     <v-card class="confirm-dialog">
-      <v-card-title class="confirm-dialog__header">
-        <DialogHeader :title="title" class="confirm-dialog__title-wrap" />
-        <v-icon icon="mdi-delete-outline" color="error" class="confirm-dialog__icon" />
-      </v-card-title>
-      <v-card-text class="confirm-dialog__content text-medium-emphasis">
-        {{ message }}
+      <v-card-text class="confirm-dialog__body">
+        <div class="confirm-dialog__icon-wrap">
+          <v-icon icon="mdi-trash-can-outline" size="26" />
+        </div>
+        <p class="confirm-dialog__title">{{ title }}</p>
+        <p class="confirm-dialog__message">{{ message }}</p>
       </v-card-text>
       <v-card-actions class="confirm-dialog__actions">
-        <v-btn variant="text" @click="cancel">Cancel</v-btn>
-        <v-btn color="error" :loading="loading" @click="confirm">Delete</v-btn>
+        <v-btn class="confirm-dialog__btn-cancel" variant="outlined" @click="cancel">Cancel</v-btn>
+        <v-btn class="confirm-dialog__btn-delete" color="error" variant="flat" :loading="loading" @click="confirm">Delete</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import DialogHeader from '@/components/ui/DialogHeader.vue'
 
 interface Props {
   title?: string
@@ -55,31 +54,64 @@ defineExpose({ loading })
   border: 1px solid var(--app-border);
   background: var(--app-modal-bg);
   box-shadow: var(--app-shadow);
+  border-radius: 20px !important;
+  overflow: hidden;
 }
 
-.confirm-dialog__header {
+.confirm-dialog__body {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  padding: 32px 28px 20px !important;
   gap: 12px;
-  padding: 22px 24px 14px;
 }
 
-.confirm-dialog__icon {
+.confirm-dialog__icon-wrap {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgb(var(--v-theme-error), 0.1);
+  color: rgb(var(--v-theme-error));
+  margin-bottom: 4px;
   flex-shrink: 0;
 }
 
-.confirm-dialog__title-wrap {
-  flex: 1;
+.confirm-dialog__title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--app-text);
 }
 
-.confirm-dialog__content {
-  padding: 0 24px 18px !important;
+.confirm-dialog__message {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--app-muted);
+  max-width: 300px;
 }
 
 .confirm-dialog__actions {
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  padding: 0 24px 22px !important;
+  padding: 4px 28px 28px !important;
+}
+
+.confirm-dialog__btn-cancel,
+.confirm-dialog__btn-delete {
+  border-radius: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0;
+  height: 42px;
+}
+
+.confirm-dialog__btn-cancel {
+  border-color: var(--app-border-strong) !important;
+  color: var(--app-text) !important;
 }
 </style>
