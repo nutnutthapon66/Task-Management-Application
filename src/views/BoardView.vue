@@ -2,10 +2,10 @@
   <div class="board-view">
     <section class="board-view__hero">
       <div>
-        <p class="board-view__eyebrow">Simple project flow</p>
-        <h1 class="board-view__title">Keep work clear, quiet, and moving.</h1>
+        <p class="board-view__eyebrow">Task Management</p>
+        <h1 class="board-view__title">จัดการงานให้ชัดเจน ทุกขั้นตอน</h1>
         <p class="board-view__subtitle">
-          Track tasks by stage, filter what matters, and keep the board readable at a glance.
+          สร้าง จัดลำดับ และติดตามงานผ่าน Kanban Board — Todo, In Progress, Done
         </p>
       </div>
 
