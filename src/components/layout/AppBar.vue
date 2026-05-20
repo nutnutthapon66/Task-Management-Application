@@ -3,7 +3,14 @@
     <template #prepend>
       <div class="app-bar__brand">
         <div class="app-bar__mark">
-          <v-icon icon="mdi-view-kanban" size="18" />
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="app-bar__logo-svg">
+            <!-- three kanban columns -->
+            <rect x="1" y="4" width="5" height="12" rx="1.5" fill="currentColor" opacity="0.35"/>
+            <rect x="8.5" y="4" width="5" height="8" rx="1.5" fill="currentColor" opacity="0.6"/>
+            <rect x="16" y="4" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.85"/>
+            <!-- checkmark on last column -->
+            <polyline points="17.2,17 19,19 22,15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <div>
           <p class="app-bar__eyebrow">Workflow Board</p>
