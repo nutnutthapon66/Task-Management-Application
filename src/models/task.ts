@@ -1,5 +1,4 @@
 export { TaskStatus, TaskPriority } from './enums/index'
-export type { TaskStatusType, TaskPriorityType } from './enums/index'
 export {
   taskStatusMap,
   taskStatusColorMap,

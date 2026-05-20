@@ -3,13 +3,14 @@ import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import TaskCard from '@/components/tasks/TaskCard.vue'
 import type { Task } from '@/models'
+import { TaskStatus, TaskPriority } from '@/models'
 
 const task: Task = {
   id: 1,
   title: 'Write tests',
   description: 'Cover all critical paths',
-  status: 'todo',
-  priority: 'high',
+  status: TaskStatus.TODO,
+  priority: TaskPriority.HIGH,
   order: 0,
   createdAt: '2024-01-15T10:00:00.000Z',
 }
