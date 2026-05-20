@@ -1,15 +1,32 @@
 <template>
-  <article class="stat-card">
+  <article
+    class="stat-card"
+    :style="color ? { '--stat-color': color, '--stat-color-bg': colorBg } : {}"
+  >
     <span class="stat-card__label">{{ label }}</span>
     <strong class="stat-card__value">{{ value }}</strong>
   </article>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   label: string
   value: string | number
+  color?: string
 }>()
+
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
+
+const colorBg = computed(() =>
+  props.color?.startsWith('#') ? hexToRgba(props.color, 0.08) : undefined,
+)
 </script>
 
 <style scoped>
@@ -17,8 +34,9 @@ defineProps<{
   min-width: 0;
   padding: 18px 20px 16px;
   border: 1px solid var(--app-border-strong);
+  border-top: 3px solid var(--stat-color, var(--app-border-strong));
   border-radius: 18px;
-  background: var(--app-surface-strong);
+  background: var(--stat-color-bg, var(--app-surface-strong));
   backdrop-filter: blur(16px) saturate(140%);
   box-shadow: var(--app-shadow-sm);
   transition: box-shadow 0.2s, transform 0.2s;
@@ -35,7 +53,7 @@ defineProps<{
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--app-muted);
+  color: var(--stat-color, var(--app-muted));
 }
 
 .stat-card__value {

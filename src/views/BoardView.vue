@@ -11,8 +11,8 @@
 
       <div class="board-view__stats">
         <StatCard label="Total" :value="totalTasks" />
-        <StatCard label="In Progress" :value="inProgressTasks" />
-        <StatCard label="Done" :value="doneTasks" />
+        <StatCard label="In Progress" :value="inProgressTasks" color="#6366f1" />
+        <StatCard label="Done" :value="doneTasks" color="#10b981" />
       </div>
     </section>
 
