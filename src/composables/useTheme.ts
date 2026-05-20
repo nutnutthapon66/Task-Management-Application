@@ -12,7 +12,11 @@ export function useTheme() {
 
   function init() {
     const saved = localStorage.getItem('theme')
-    if (saved) theme.global.name.value = saved
+    if (saved) {
+      theme.global.name.value = saved
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme.global.name.value = 'dark'
+    }
   }
 
   return { isDark, toggle, init }
